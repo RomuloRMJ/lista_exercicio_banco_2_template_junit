@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 /**
 *
-* Nome:
-* Curso:
-* Matrícula:
+* Nome:Rômulo Rodrigues Miranda Junior
+* Curso:IPI 2 Período
+* Matrícula:20222INFIG0221
 * 
 */
 public class Cliente {
@@ -31,6 +31,12 @@ public class Cliente {
      * @param c
      */
     public void adicionarConta(ContaBancaria c) {
+    	if(this.contas.contains(c)) {
+    		System.out.print("A conta jah estah associada a este cliente.");
+    	}else {
+    		System.out.print("Conta adicionada com sucesso!");
+    		this.contas.add(c);
+    	}
 
     }
 
@@ -45,6 +51,12 @@ public class Cliente {
      * @param c
      */
     public void removerConta(ContaBancaria c) {
+    	if(this.contas.contains(c)) {
+    		System.out.print("Conta removida com sucesso!");
+    		this.contas.remove(c);
+    	}else {
+    		System.out.print("A conta nao esta associada a este cliente.");
+    	}
 
     }
 
@@ -59,6 +71,13 @@ public class Cliente {
      * @return
      */
     public ContaBancaria localizarContaNumero(int numero) {
+    	for(ContaBancaria conta : this.contas) {
+    		if(conta.getNumeroConta() == numero) {
+    			System.out.print("Conta encontrada!");
+    			return conta;
+    		}
+    	}
+    	System.out.print("Conta nao encontrada.");
         return null;
     }
 
@@ -74,7 +93,14 @@ public class Cliente {
      * @return
      */
     public boolean localizarConta(ContaBancaria c) {
-        return false;
+    	if(this.contas.contains(c)) {
+    		System.out.print("Conta encontrada!");
+    		return true;
+    	}else {
+    		System.out.print("Conta nao encontrada.");
+    		return false;
+    	}
+        
     }
 
     /**
@@ -86,7 +112,12 @@ public class Cliente {
      * @return
      */
     public double balancoEntreContas() {
-        return 0.0;
+    	double soma = 0.0;
+    	for(ContaBancaria conta : this.contas) {
+    		soma += conta.getSaldo();
+    	}
+    	System.out.print("Balanco entre contas: RS" + soma);
+    	return soma;
     }
     
     public ArrayList<ContaBancaria> getContas() {
